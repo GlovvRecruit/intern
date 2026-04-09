@@ -343,21 +343,30 @@ ol.sp-ol ul.sp-ul {
 .video-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   margin: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .video-wrap{
   border-radius: 10px;
   overflow: hidden;
   background: #000;
-  aspect-ratio: 9/16;
   width: 100%;
+  aspect-ratio: 9/16;
+  min-width: 0;
+  position: relative;
 }
 .video-wrap iframe{
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 100%;
-  height: 100%;
+  height: 180%; /* 검은 여백 크롭 */
+  transform: translate(-50%, -50%);
   border: none;
   display: block;
+  pointer-events: auto;
 }
 
 /* ── floating CTA ── */
@@ -512,7 +521,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sp-divider"></div>
 
   <!-- 3️⃣ -->
-  <h2 class="section-head"><span class="emoji-num">3️⃣</span> 최고의 기회 : 뷰티 산업/마케터/스타트업</h2>
+  <h2 class="section-head"><span class="emoji-num">3️⃣</span> 최고의 기회 : 뷰티/마케터/스타트업</h2>
 
   <ol class="sp-ol">
     <li>
@@ -626,8 +635,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         투자
         <ul class="indent-ul">
           <li>24년 팁스 선정</li>
-          <li>25년 시리즈A 30억원 투자 유치 완료
-            <br>→ <a href="https://platum.kr/archives/268968" target="_blank" rel="noopener" style="color:inherit">기사보기</a></li>
+          <li>25년 시리즈A 30억원 투자 유치 완료 <a href="https://platum.kr/archives/268968" target="_blank" rel="noopener" style="color:inherit">기사보기</a></li>
         </ul>
       </div>
     </li>
