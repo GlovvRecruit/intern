@@ -23,6 +23,14 @@ src="https://www.facebook.com/tr?id=881944777433930&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N56MMQQH');</script>
+<!-- End Google Tag Manager -->
+
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/>
@@ -82,33 +90,43 @@ h1.page-title{
   margin-bottom: 14px;
   text-align: center;
 }
+/* ══════════════════════════════════════
+   레이아웃 기준값
+   INDENT = 38px (이모지28px + gap10px)
+   ══════════════════════════════════════ */
+
 h2.section-head{
   font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin: 52px 0 16px;
+  margin: 52px 0 20px;   /* 아래 간격 통일 */
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.emoji-num{
+  font-size: 28px;
+  flex-shrink: 0;
+  line-height: 1;
 }
 h3.sub-head{
   font-size: 20px;
   font-weight: 800;
   color: var(--text);
-  margin: 36px 0 12px;
-  /* 1️⃣ 바로 아래 레벨 - 들여쓰기 없음 */
+  margin: 28px 0 12px;
+  padding-left: 38px;    /* INDENT: ol 숫자와 같은 선 */
 }
 h4.subsub{
   font-size: 17px;
   font-weight: 700;
   color: var(--text);
   margin: 20px 0 8px;
-  padding-left: 20px;      /* h3 아래 들여쓰기 */
+  padding-left: 72px;    /* h3(38px) + 숫자(24px) + gap(10px) */
 }
-/* h4 바로 아래 불릿은 추가 들여쓰기 */
+/* h4 바로 아래 불릿 */
 h4.subsub + ul.sp-ul {
-  padding-left: 36px;
+  padding-left: 88px;
 }
 
 /* ── 단락 ── */
@@ -119,11 +137,11 @@ p.sp-p{
   line-height: 1.85;
 }
 
-/* ── 불릿 리스트 (· 항목) - 들여쓰기 적용 ── */
+/* ── 불릿 리스트 ── */
 ul.sp-ul{
   list-style: none;
   margin: 8px 0 16px 0;
-  padding: 0 0 0 16px;   /* ← 들여쓰기 */
+  padding: 0 0 0 38px;   /* INDENT */
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -132,10 +150,15 @@ ul.sp-ul li{
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 16px;        /* ← 소제목보다 작게 */
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.8;
-  font-weight: 400;       /* ← 보통 굵기 */
+  font-weight: 400;
+}
+ul.sp-ul li > .li-inner{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 ul.sp-ul li::before{
   content: '';
@@ -143,7 +166,7 @@ ul.sp-ul li::before{
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #aaa;       /* ← 연하게 */
+  background: #aaa;
   margin-top: 11px;
 }
 
@@ -151,8 +174,8 @@ ul.sp-ul li::before{
 ol.sp-ol{
   list-style: none;
   counter-reset: sp-counter;
-  margin: 10px 0 16px 0;
-  padding: 0;
+  margin: 8px 0 16px 0;
+  padding: 0 0 0 38px;   /* INDENT */
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -173,7 +196,7 @@ ol.sp-ol > li::before{
   color: var(--text);
   min-width: 24px;
 }
-.li-body{ flex:1; font-weight:700; }
+.li-body{ flex:1; font-weight:700; min-width:0; }
 
 /* ol 아래 불릿은 더 들여쓰기 + 작게 */
 ol.sp-ol .indent-ul,
@@ -291,8 +314,9 @@ ol.sp-ol ul.sp-ul {
 .emoji-num{
   display: inline-flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 28px;
   flex-shrink: 0;
+  line-height: 1.4;
 }
 
 /* ── 프로세스 박스 ── */
@@ -314,6 +338,31 @@ ol.sp-ol ul.sp-ul {
 
 /* ── 근무조건 테이블 ── */
 .cond-table{ display:none }
+
+/* ── 영상 그리드 ── */
+.video-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+.video-wrap{
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  width: 100%;
+  padding-bottom: 177.78%; /* 9:16 비율 */
+  height: 0;
+}
+.video-wrap iframe{
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
 
 /* ── floating CTA ── */
 .floating-cta{
@@ -343,13 +392,40 @@ ol.sp-ol ul.sp-ul {
 /* ── 모바일 ── */
 @media(max-width:600px){
   h1.page-title{ font-size:34px }
-  h2.section-head{ font-size:22px }
-  .main{ padding:0 18px 80px }
-  .article-card .ac-img{ width:90px }
+  h2.section-head{ font-size:21px; gap:8px }
+  .main{ padding:0 16px 80px }
+  .article-card .ac-img{ width:80px }
+  .content{ padding-top: 36px }
+
+  /* 모바일에서 깊은 들여쓰기 축소 */
+  h3.sub-head{ padding-left: 24px }
+  ul.sp-ul{ padding-left: 24px }
+  ol.sp-ol{ padding-left: 24px }
+  h4.subsub{ padding-left: 44px }
+  h4.subsub + ul.sp-ul{ padding-left: 58px }
+
+  /* 영상: 모바일에서 1열로 */
+  .video-grid{
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* floating CTA 모바일 가득채우기 */
+  .floating-cta{
+    width: calc(100% - 32px);
+    text-align: center;
+    padding: 15px 20px;
+  }
 }
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N56MMQQH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="layout">
 
 <!-- ── 메인 ── -->
@@ -502,10 +578,13 @@ ol.sp-ol ul.sp-ul {
   <ul class="sp-ul">
     <li>이태원역 1분 거리 사무실</li>
     <li>오전 9시~오후 6시 기본 근무</li>
-    <li>급여 : 시급 11,000원 * 성과에 따라 시급 인상
-      <ul class="indent-ul" style="margin-top:4px">
-        <li>월급 환산시 기본급 : 약 세전 230만원</li>
-      </ul>
+    <li>
+      <span class="li-inner">
+        급여 : 시급 11,000원 * 성과에 따라 시급 인상
+        <ul class="indent-ul" style="margin-top:4px">
+          <li>월급 환산시 기본급 : 약 세전 230만원</li>
+        </ul>
+      </span>
     </li>
   </ul>
 
@@ -513,8 +592,10 @@ ol.sp-ol ul.sp-ul {
 
   <!-- 5️⃣ -->
   <h2 class="section-head"><span class="emoji-num">5️⃣</span> 혜택</h2>
-  <p class="sp-p" style="color:var(--text)">• 인턴십 1년을 완료한 경우</p>
-  <ol class="sp-ol" style="margin-left:8px">
+  <ul class="sp-ul">
+    <li>인턴십 1년을 완료한 경우</li>
+  </ul>
+  <ol class="sp-ol">
     <li>
       <div class="li-body">
         대표자가 직접 추천서 작성
@@ -596,48 +677,39 @@ ol.sp-ol ul.sp-ul {
   </ul>
 
   <!-- 영상 2열 그리드 (Google Drive) -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0">
-    <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:9/16">
+  <div class="video-grid">
+    <div class="video-wrap">
       <iframe
         src="https://drive.google.com/file/d/195XHpjYjE5DQgdgOpftmQltMKUBFNrKk/preview"
-        style="width:100%;height:100%;border:none;display:block"
         allow="autoplay"
         allowfullscreen>
       </iframe>
     </div>
-    <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:9/16">
+    <div class="video-wrap">
       <iframe
         src="https://drive.google.com/file/d/1IDpOnvXT-wUOFX0KfS6YqmPD6greh0t3/preview"
-        style="width:100%;height:100%;border:none;display:block"
         allow="autoplay"
         allowfullscreen>
       </iframe>
     </div>
   </div>
   <p class="sp-p" style="text-align:center;font-weight:600;color:var(--text);margin-bottom:20px">뷰티 릴스 영상 예시</p>
-  <p class="sp-p" style="margin-bottom:16px">다양한 유형의 뷰티 릴스 영상을 제작</p>
 
-  <ul class="sp-ul">
-    <li>글로브는 기존 인플루언서 콘텐츠 생산에서의 문제점 해결</li>
+  <h3 class="sub-head">글로브는 기존 인플루언서 콘텐츠 생산에서의 문제점 해결</h3>
+
+  <h4 class="subsub">(1) 기존 문제점</h4>
+  <ul class="sp-ul" style="padding-left:88px">
+    <li>인플루언서 1:1 컨택에 소요되는 긴 커뮤니케이션 시간</li>
+    <li>2차 활용 시마다 발생하는 재허락 절차와 추가 비용</li>
+    <li>근거 없이 비싼 인플루언서 원고료 (100만원 이상) &amp; MCN·대행사를 거치며 발생하는 과도한 수수료 (최대 60% 이상)</li>
   </ul>
 
-  <div style="margin:16px 0 0 24px">
-    <p style="font-size:17px;font-weight:700;color:var(--text);margin-bottom:12px">(1) 기존 문제점</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-left:20px">
-      <p style="font-size:16px;color:var(--text-muted)">1) 인플루언서 1:1 컨택에 소요되는 긴 커뮤니케이션 시간</p>
-      <p style="font-size:16px;color:var(--text-muted)">2) 2차 활용 시마다 발생하는 재허락 절차와 추가 비용</p>
-      <p style="font-size:16px;color:var(--text-muted)">3) 근거 없이 비싼 인플루언서 원고료 (100만원 이상) &amp; MCN·대행사를 거치며 발생하는 과도한 수수료 (최대 60% 이상)</p>
-    </div>
-  </div>
-
-  <div style="margin:24px 0 0 24px">
-    <p style="font-size:17px;font-weight:700;color:var(--text);margin-bottom:12px">(2) 글로브 제공 가치</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-left:20px">
-      <p style="font-size:16px;color:var(--text-muted)">1) 컨택·계약·제작·활용 등 릴스 제작 전 과정 플랫폼화를 통한 간소화</p>
-      <p style="font-size:16px;color:var(--text-muted)">2) 2차 가공·2차 활용 무제한</p>
-      <p style="font-size:16px;color:var(--text-muted)">3) 기존 원고료 200만원 수준의 인플루언서를 평균 30만원대에 활용</p>
-    </div>
-  </div>
+  <h4 class="subsub">(2) 글로브 제공 가치</h4>
+  <ul class="sp-ul" style="padding-left:88px">
+    <li>컨택·계약·제작·활용 등 릴스 제작 전 과정 플랫폼화를 통한 간소화</li>
+    <li>2차 가공·2차 활용 무제한</li>
+    <li>기존 원고료 200만원 수준의 인플루언서를 평균 30만원대에 활용</li>
+  </ul>
 
   <div class="sp-divider"></div>
 
@@ -695,15 +767,4 @@ ol.sp-ol ul.sp-ul {
     <p>• 문의 : <a href="mailto:youjin@glovv.co.kr" style="color:inherit">youjin@glovv.co.kr</a></p>
   </div>
 
-  <div style="height:96px"></div><!-- floating CTA 공간 -->
-
-</div><!-- /content -->
-</main>
-
-</div><!-- /layout -->
-
-<!-- 항상 화면 하단에 떠있는 지원 버튼 -->
-<a class="floating-cta" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener">1분만에 이력서 제출 →</a>
-
-</body>
-</html>
+  <div style="height:96px"></div><!-- floating CTA
