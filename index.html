@@ -416,7 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img class="sp-img-sm" src="https://upload.cafenono.com/image/logo/20250427/074222_PYzZMaknLgzVLU2Pgd?q=90&s=1280x1" alt="Glovv 로고" style="width:160px;margin-bottom:24px;border-radius:0"/>
 
   <h1 class="page-title">뷰티 인턴 채용공고</h1>
-  <p class="sp-p" style="font-size:22px;color:var(--text);font-weight:600;margin-top:56px;text-align:center">출시 1년만에 연매출 100억 달성</p>
+  <p class="sp-p" style="font-size:22px;color:var(--text);font-weight:600;margin-top:56px;text-align:center">출시 1년만에 100억 매출 달성</p>
   <p class="sp-p" style="font-size:22px;color:var(--text);font-weight:600;margin-top:16px;text-align:center">뷰티 커리어 등용문 '글로브'</p>
   <p class="sp-p" style="color:var(--text);font-size:17px;text-align:center;line-height:2;margin-top:36px">초고속 성장 중인<br/>뷰티 릴스 제작 플랫폼 글로브에서<br/><br/>인플루언서 시장을 혁신할<br/>핵심 인턴을 찾습니다.</p>
 
@@ -837,16 +837,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     overflow: hidden;
     border-radius: 16px;
   }
+  .intern-carousel{
+    display: grid;
+    grid-template-columns: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+  }
   .intern-card{
+    grid-row: 1;
+    grid-column: 1;
     min-width: 100%;
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 28px 28px 72px;
+    padding: 28px 28px 52px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(.4,0,.2,1);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+  }
+  .intern-card.active-card{
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
   }
   .intern-card-header{
     display: flex;
@@ -937,7 +954,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     transform: scale(1.25);
   }
   @media(max-width:600px){
-    .intern-card{ padding: 22px 20px 120px; }
+    .intern-card{ padding: 22px 20px 32px; min-height: auto; }
     .intern-avatar-img{ width: 64px; height: 64px; }
     .intern-name{ font-size: 17px; }
     .intern-a{ font-size: 14px; }
@@ -951,7 +968,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var total = cards.length;
     var dotsWrap = document.getElementById('internDots');
 
-    // 도트 생성
     for(var i=0;i<total;i++){
       var d = document.createElement('button');
       d.className = 'intern-dot' + (i===0?' active':'');
@@ -962,26 +978,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     function goTo(idx){
+      cards[current].classList.remove('active-card');
       current = idx;
-      var offset = -100 * current;
-      cards.forEach(function(c){ c.style.transform = 'translateX('+(offset+100*Array.prototype.indexOf.call(cards,c))+'%)'; });
+      cards[current].classList.add('active-card');
       document.querySelectorAll('.intern-dot').forEach(function(d,i){ d.classList.toggle('active', i===current); });
       document.getElementById('internPrev').disabled = current===0;
       document.getElementById('internNext').disabled = current===total-1;
     }
 
-    // 초기 위치 설정
-    cards.forEach(function(c,i){ c.style.transform = 'translateX('+(100*i)+'%)'; c.style.position = i===0?'relative':'absolute'; c.style.top='0'; c.style.left='0'; c.style.width='100%'; });
-    document.querySelector('.intern-carousel').style.position='relative';
+    cards[0].classList.add('active-card');
     document.getElementById('internPrev').disabled = true;
-    goTo(0);
 
     window.moveCarousel = function(dir){
       var next = Math.max(0, Math.min(total-1, current+dir));
       goTo(next);
     };
 
-    // 스와이프 지원
     var startX = 0;
     var carousel = document.getElementById('internCarousel');
     carousel.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
