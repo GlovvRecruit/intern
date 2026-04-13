@@ -535,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="process-box">
     <p>• 채용 프로세스 : 위 링크로 이력서 제출 → 팀장과 면접 → 합격</p>
     <p>• 선착순 면접이며, 채용 완료시 마감되니 빠른 지원 유리</p>
-    <p>• 문의 : <a href="mailto:youjin@glovv.co.kr" style="color:inherit">youjin@glovv.co.kr</a></p>
+    <p>• 문의 : <a href="/cdn-cgi/l/email-protection#cbb2a4bea1a2a58baca7a4bdbde5a8a4e5a0b9" style="color:inherit"><span class="__cf_email__" data-cfemail="7b02140e1112153b1c17140d0d551814551009">[email&#160;protected]</span></a></p>
   </div>
 
   <div class="sp-divider"></div>
@@ -950,7 +950,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   </style>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   (function(){
     var current = 0;
     var cards = document.querySelectorAll('.intern-card');
@@ -1001,7 +1001,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="process-box">
     <p>• 채용 프로세스 : 위 링크로 이력서 제출 → 팀장과 면접 → 합격</p>
     <p>• 선착순 면접이며, 채용 완료시 마감되니 빠른 지원 유리</p>
-    <p>• 문의 : <a href="mailto:youjin@glovv.co.kr" style="color:inherit">youjin@glovv.co.kr</a></p>
+    <p>• 문의 : <a href="/cdn-cgi/l/email-protection#f0899f859a999eb0979c9f8686de939fde9b82" style="color:inherit"><span class="__cf_email__" data-cfemail="1a63756f7073745a7d76756c6c347975347168">[email&#160;protected]</span></a></p>
   </div>
 
   <div style="height:96px"></div>
@@ -1013,7 +1013,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- floating CTA -->
 <a class="floating-cta" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-float">
   <span class="cta-main-text">지금 바로 지원하기 (1분↓ 소요)</span>
-  <span class="cta-sub-text">선착순 마감 · 현재 <span id="applicant-count">37</span>명 지원 중</span>
+  <span class="cta-sub-text">선착순 마감 · 현재 <span id="applicant-count">57</span>명 지원 중</span>
 </a>
 
 <style>
@@ -1042,7 +1042,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </style>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   var BASE = 57;
   var STORAGE_KEY = 'glovv_applicants';
@@ -1060,8 +1060,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function getCount(){
     var stored = parseInt(localStorage.getItem(STORAGE_KEY)) || BASE;
-    var lastTs = parseInt(localStorage.getItem(TIMESTAMP_KEY)) || Date.now();
+    var lastTs = parseInt(localStorage.getItem(TIMESTAMP_KEY));
     var now = Date.now();
+
+    if(!lastTs){
+      localStorage.setItem(STORAGE_KEY, stored);
+      localStorage.setItem(TIMESTAMP_KEY, now);
+      return stored;
+    }
+
     var hoursPassed = Math.floor((now - lastTs) / (1000 * 60 * 60));
 
     if(hoursPassed > 0){
@@ -1073,7 +1080,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if(isActiveHour(h)) count += randomInc(h, count);
       }
       localStorage.setItem(STORAGE_KEY, count);
-      localStorage.setItem(TIMESTAMP_KEY, now - ((now - lastTs) % (1000 * 60 * 60)));
+      localStorage.setItem(TIMESTAMP_KEY, now);
       return count;
     }
     return stored;
@@ -1236,24 +1243,4 @@ function shareKakao() {
     content: {
       title: '글로브 뷰티 인턴 채용',
       description: '다시 보고 싶다면 저장해두세요!',
-      imageUrl: 'https://glovvrecruit.github.io/glovv-recuit/logo_glovv_profile.png',
-      link: {
-        mobileWebUrl: 'https://glovvrecruit.github.io/glovv-recuit/',
-        webUrl: 'https://glovvrecruit.github.io/glovv-recuit/',
-      },
-    },
-    buttons: [
-      {
-        title: '지원하기',
-        link: {
-          mobileWebUrl: 'https://glovvrecruit.github.io/glovv-recuit/',
-          webUrl: 'https://glovvrecruit.github.io/glovv-recuit/',
-        },
-      },
-    ],
-  });
-}
-</script>
-
-</body>
-</html>
+      imageUrl: 'https://glovvrecruit.
