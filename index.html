@@ -838,32 +838,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     border-radius: 16px;
   }
   .intern-carousel{
-    display: grid;
-    grid-template-columns: 100%;
-    overflow: hidden;
+    display: block;
     border-radius: 16px;
+    position: relative;
   }
   .intern-card{
-    grid-row: 1;
-    grid-column: 1;
-    min-width: 100%;
+    width: 100%;
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px 28px 52px;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 18px;
-    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(.4,0,.2,1);
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 0; left: 0; width: 100%;
   }
   .intern-card.active-card{
-    opacity: 1;
-    pointer-events: auto;
-    position: relative;
+    display: flex;
   }
   .intern-card-header{
     display: flex;
@@ -954,7 +944,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     transform: scale(1.25);
   }
   @media(max-width:600px){
-    .intern-card{ padding: 22px 20px 32px; min-height: auto; }
+    .intern-card{ padding: 22px 20px 40px; }
     .intern-avatar-img{ width: 64px; height: 64px; }
     .intern-name{ font-size: 17px; }
     .intern-a{ font-size: 14px; }
