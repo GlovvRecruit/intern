@@ -358,6 +358,68 @@ ol.sp-ol ul.sp-ul {
   display: block;
 }
 
+/* ═══════════════════════════════════════
+   그라데이션 CTA 배너 (옵션 B)
+   ═══════════════════════════════════════ */
+.gradient-cta-banner {
+  background: linear-gradient(135deg, #FF7A3D 0%, #FF2D8A 50%, #FF1A7A 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  margin: 28px 0;
+  padding: 48px 32px;
+  transition: transform .15s, box-shadow .15s;
+  text-align: center;
+}
+.gradient-cta-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 45, 138, 0.3);
+}
+.gradient-cta-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.gradient-cta-main {
+  font-size: 38px;
+  color: #fff;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.hint-badge {
+  display: inline-block;
+  background: #fff;
+  color: #FF2D8A;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.gradient-cta-button-wrap {
+  margin-top: 8px;
+}
+.gradient-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 14px 32px;
+  border-radius: 999px;
+  letter-spacing: -0.01em;
+}
+
+/* floating CTA */
 .floating-cta{
   position: fixed;
   bottom: 24px;
@@ -398,6 +460,11 @@ ol.sp-ol ul.sp-ul {
     text-align: center;
     padding: 15px 20px;
   }
+  .gradient-cta-banner { padding: 36px 20px; }
+  .gradient-cta-main { font-size: 28px; }
+  .gradient-cta-sub { font-size: 13px; }
+  .hint-badge { font-size: 12px; padding: 7px 14px; }
+  .gradient-cta-button { font-size: 16px; padding: 12px 24px; }
 }
 </style>
 </head>
@@ -694,8 +761,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
   </script>
 
-  <a class="img-cta" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-1">
-    <img src="https://upload.cafenono.com/image/slashpageHome/20260226/200328_h8lTqAY85yBpHTGhMY?q=90&s=1920x1&t=outside&f=webp" alt="이력서 제출 배너" style="width:100%;border-radius:12px;display:block;margin:16px 0"/>
+  <!-- ═══════════════════════════════════════
+       중간 CTA 배너 (그라데이션 + 옵션 B 뱃지)
+       ═══════════════════════════════════════ -->
+  <a class="gradient-cta-banner" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-1">
+    <p class="gradient-cta-sub">글로브에 궁금한 점, 관심이 생기셨다면</p>
+    <p class="gradient-cta-main">30초만에 지원</p>
+    <span class="hint-badge">📝 이력서 없이도 가능</span>
+    <div class="gradient-cta-button-wrap">
+      <span class="gradient-cta-button">
+        여기를 클릭 →
+      </span>
+    </div>
   </a>
 
   <div class="process-box">
@@ -882,9 +959,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </li>
 </ol>
 
-  <!-- 최하단 CTA -->
-  <a class="img-cta" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-2">
-    <img src="https://upload.cafenono.com/image/slashpageHome/20260226/200416_czJeXRwv7PGUhA1wcC?q=90&s=1920x1&t=outside&f=webp" alt="지원하기 배너" style="width:100%;display:block"/>
+  <!-- ═══════════════════════════════════════
+       최하단 CTA 배너 (그라데이션 + 옵션 B 뱃지)
+       ═══════════════════════════════════════ -->
+  <a class="gradient-cta-banner" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-2">
+    <p class="gradient-cta-sub">지금 바로 지원하세요</p>
+    <p class="gradient-cta-main">30초만에 지원</p>
+    <span class="hint-badge">📝 이력서 없이도 가능</span>
+    <div class="gradient-cta-button-wrap">
+      <span class="gradient-cta-button">
+        여기를 클릭 →
+      </span>
+    </div>
   </a>
 
   <div class="process-box">
@@ -945,11 +1031,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var slowDown = count >= 200 ? 0.3 : (count >= 150 ? 0.6 : 1);
 
     if(h >= 9 && h < 18){
-      // 업무 시간: 시간당 1~3명 증가
       return Math.random() < slowDown ? Math.floor(Math.random() * 3) + 1 : 0;
     }
     if(h >= 21 && h < 24){
-      // 저녁 시간: 시간당 1~4명 증가
       return Math.random() < slowDown ? Math.floor(Math.random() * 4) + 1 : 0;
     }
     return 0;
@@ -991,14 +1075,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- =============================================
      트래킹 스크립트
-     1. 버튼 클릭 (GTM + Meta Pixel)
-     2. 스크롤 깊이 50% (GTM + Meta Pixel)
-     3. 섹션 체류 시간
+     1. 버튼 클릭 (GTM + Meta Pixel Lead)
+     2. 스크롤 깊이 (GTM + Meta Pixel DeepScroll)
+     3. 섹션 체류 시간 (GTM)
      ============================================= -->
 <script>
 (function() {
 
-  // ── 1. 버튼 클릭 트래킹 ──
+  // ── 1. 버튼 클릭 트래킹 (Meta Pixel Lead 이벤트) ──
   var ctaBtns = document.querySelectorAll('#cta-btn-1, #cta-btn-2, #cta-btn-float');
   ctaBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
