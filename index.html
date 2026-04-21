@@ -115,11 +115,6 @@ h1.page-title{
   text-align: center;
 }
 
-/* ══════════════════════════════════════
-   레이아웃 기준값
-   INDENT = 38px (이모지28px + gap10px)
-   ══════════════════════════════════════ */
-
 h2.section-head{
   font-size: 26px;
   font-weight: 800;
@@ -342,7 +337,6 @@ ol.sp-ol ul.sp-ul {
   line-height: 1.8;
 }
 
-/* ── 영상 그리드 ── */
 .video-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -364,7 +358,6 @@ ol.sp-ol ul.sp-ul {
   display: block;
 }
 
-/* ── floating CTA ── */
 .floating-cta{
   position: fixed;
   bottom: 24px;
@@ -389,7 +382,6 @@ ol.sp-ol ul.sp-ul {
   box-shadow: 0 10px 32px rgba(0,0,0,0.3);
 }
 
-/* ── 모바일 ── */
 @media(max-width:600px){
   h1.page-title{ font-size:34px }
   h2.section-head{ font-size:21px; gap:8px }
@@ -538,11 +530,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2 class="section-head" data-track="section_4"><span class="emoji-num">4️⃣</span> 글로브 재직중인 인턴님들 인터뷰</h2>
   <p class="sp-p" style="margin-bottom:20px">글로브에서는 약 10명의 뛰어난 인턴님들이 재직중입니다.</p>
 
-  <!-- 캐로셀 wrapper -->
   <div class="intern-carousel-wrap">
     <div class="intern-carousel" id="internCarousel">
 
-      <!-- 승동 -->
       <div class="intern-card">
         <div class="intern-card-header">
           <div class="intern-avatar-img">
@@ -564,7 +554,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- 여정 -->
       <div class="intern-card">
         <div class="intern-card-header">
           <div class="intern-avatar-img">
@@ -586,7 +575,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- 민정 -->
       <div class="intern-card">
         <div class="intern-card-header">
           <div class="intern-avatar-img">
@@ -608,7 +596,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- 성은 -->
       <div class="intern-card">
         <div class="intern-card-header">
           <div class="intern-avatar-img">
@@ -630,17 +617,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-    </div><!-- /.intern-carousel -->
+    </div>
 
-    <!-- 네비게이션 -->
     <div class="intern-nav">
       <button class="intern-btn" id="internPrev" onclick="moveCarousel(-1)" aria-label="이전">&#8592;</button>
       <div class="intern-dots" id="internDots"></div>
       <button class="intern-btn" id="internNext" onclick="moveCarousel(1)" aria-label="다음">&#8594;</button>
     </div>
-  </div><!-- /.intern-carousel-wrap -->
+  </div>
 
-  <!-- 캐로셀 스타일 -->
   <style>
   .intern-carousel-wrap{ margin: 0 0 8px; position: relative; }
   .intern-carousel{ display: block; border-radius: 16px; position: relative; }
@@ -825,7 +810,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li>마케팅 의존도가 높은 모든 뷰티 브랜드들은 현시점 ROAS(광고비 대비 매출)가 가장 높게 나오는 릴스 마케팅에 집중</li>
   </ul>
 
-  <!-- 영상 2열 그리드 (YouTube Shorts) -->
   <div class="video-grid">
     <div class="video-wrap">
       <iframe
@@ -917,8 +901,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- floating CTA -->
 <a class="floating-cta" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-float">
-  <span class="cta-main-text">지금 바로 지원하기 (1분 소요)</span>
-  <span class="cta-sub-text">선착순 마감 · 현재 <span id="applicant-count">57</span>명 지원 중</span>
+  <span class="cta-main-text">[마감 임박] 바로 지원하기 (30초 소요)</span>
+  <span class="cta-sub-text">📝 이력서 없이도 지원 가능 · 현재 <span id="applicant-count">90</span>명 지원 중</span>
 </a>
 
 <style>
@@ -949,7 +933,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 (function(){
-  var BASE = 57;
+  var BASE = 90;
   var STORAGE_KEY = 'glovv_applicants';
   var TIMESTAMP_KEY = 'glovv_applicants_ts';
 
@@ -957,9 +941,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return (h >= 9 && h < 18) || (h >= 21 && h < 24);
   }
   function randomInc(h, count){
-    var over90 = count >= 90;
-    if(h >= 9 && h < 18) return over90 ? (Math.random() < 0.3 ? 1 : 0) : Math.floor(Math.random() * 3);
-    if(h >= 21 && h < 24) return over90 ? (Math.random() < 0.4 ? 1 : 0) : Math.floor(Math.random() * 4);
+    // 구간별 감속: 150명 이상 60%, 200명 이상 30%
+    var slowDown = count >= 200 ? 0.3 : (count >= 150 ? 0.6 : 1);
+
+    if(h >= 9 && h < 18){
+      // 업무 시간: 시간당 1~3명 증가
+      return Math.random() < slowDown ? Math.floor(Math.random() * 3) + 1 : 0;
+    }
+    if(h >= 21 && h < 24){
+      // 저녁 시간: 시간당 1~4명 증가
+      return Math.random() < slowDown ? Math.floor(Math.random() * 4) + 1 : 0;
+    }
     return 0;
   }
 
@@ -1012,14 +1004,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     btn.addEventListener('click', function() {
       var label = btn.id === 'cta-btn-float' ? 'floating' : btn.id === 'cta-btn-1' ? 'middle' : 'bottom';
 
-      // GTM
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'cta_click',
         cta_position: label
       });
 
-      // Meta Pixel
       if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead', { cta_position: label });
       }
@@ -1035,14 +1025,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!scrollFired[milestone] && scrolled >= milestone) {
         scrollFired[milestone] = true;
 
-        // GTM
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'scroll_depth',
           scroll_percent: milestone
         });
 
-        // Meta Pixel - 50% 이상만
         if (milestone === 50 && typeof fbq !== 'undefined') {
           fbq('trackCustom', 'DeepScroll', { scroll_percent: 50 });
         }
@@ -1089,7 +1077,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 </script>
 
-<!-- 카카오 저장 버튼 (floating CTA 위 중앙 고정) -->
+<!-- 카카오 저장 버튼 -->
 <style>
 .kakao-save-btn {
   position: fixed;
@@ -1131,16 +1119,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 function shareKakao() {
-  // GTM 트래킹
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: 'cta_click',
     cta_position: 'kakao_share'
   });
 
-  // Meta Pixel 트래킹
   if (typeof fbq !== 'undefined') {
     fbq('trackCustom', 'Save', { cta_position: 'kakao_share' });
+  }
+
+  if (typeof Kakao === 'undefined' || !Kakao.Share) {
+    alert('카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+    return;
   }
 
   Kakao.Share.sendDefault({
