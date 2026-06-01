@@ -1505,11 +1505,41 @@ function shareKakao() {
 
 <script>
 (function () {
-  var qs = window.location.search;
+  var KEY = 'glovv_attr', WINDOW_MS = 7 * 24 * 60 * 60 * 1000, now = Date.now();
+
+  // 1) 현재 URL의 광고 파라미터 읽기
+  var params = new URLSearchParams(window.location.search);
+  var current = {};
+  ['utm_source', 'utm_campaign', 'adset', 'ad'].forEach(function (k) {
+    if (params.get(k)) current[k] = params.get(k);
+  });
+
+  // 2) 저장된 값 불러오기 (7일 지나면 폐기)
+  var stored = null;
+  try { stored = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+  if (stored && now - stored.ts > WINDOW_MS) stored = null;
+
+  // 3) 광고로 들어왔으면 최신 값으로 7일 갱신 저장 (last-click)
+  if (current.utm_source) {
+    stored = { data: current, ts: now };
+    try { localStorage.setItem(KEY, JSON.stringify(stored)); } catch (e) {}
+  }
+
+  // 4) 사용할 값: 이번 방문의 광고 파라미터 우선, 없으면 저장된 값
+  var attr = current.utm_source ? current : (stored ? stored.data : {});
+
+  // 5) 자연 유입 분류용 referrer 추가
+  attr.ref = document.referrer || '';
+
+  // 6) Tally 링크에 붙이기
+  var qs = Object.keys(attr).filter(function (k) { return attr[k]; })
+    .map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(attr[k]); })
+    .join('&');
   if (!qs) return;
+
   document.querySelectorAll('a[href*="tally.so/r/"]').forEach(function (a) {
     var href = a.getAttribute('href');
-    a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + qs.slice(1));
+    a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + qs);
   });
 })();
 </script>
