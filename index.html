@@ -1503,5 +1503,16 @@ function shareKakao() {
 }
 </script>
 
+<script>
+(function () {
+  var qs = window.location.search;
+  if (!qs) return;
+  document.querySelectorAll('a[href*="tally.so/r/"]').forEach(function (a) {
+    var href = a.getAttribute('href');
+    a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + qs.slice(1));
+  });
+})();
+</script>
+
 </body>
 </html>
