@@ -1039,7 +1039,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ═══════════════════════════════════════
        중간 CTA 배너
        ═══════════════════════════════════════ -->
-  <a class="gradient-cta-banner" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-1">
+  <a class="gradient-cta-banner" href="https://tally.so/forms/eqyWdl/share" target="_blank" rel="noopener" id="cta-btn-1">
     <p class="gradient-cta-sub">글로브 세일즈에 관심이 생기셨다면</p>
     <p class="gradient-cta-main">30초만에 지원</p>
     <span class="hint-badge">📝 이력서 없이도 가능</span>
@@ -1238,7 +1238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ═══════════════════════════════════════
        최하단 CTA 배너
        ═══════════════════════════════════════ -->
-  <a class="gradient-cta-banner" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-2">
+  <a class="gradient-cta-banner" href="https://tally.so/forms/eqyWdl/share" target="_blank" rel="noopener" id="cta-btn-2">
     <p class="gradient-cta-sub">지금 바로 지원하세요</p>
     <p class="gradient-cta-main">30초만에 지원</p>
     <span class="hint-badge">📝 이력서 없이도 가능</span>
@@ -1262,7 +1262,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- floating CTA -->
-<a class="floating-cta" href="https://tally.so/r/RGzKbK" target="_blank" rel="noopener" id="cta-btn-float">
+<a class="floating-cta" href="https://tally.so/forms/eqyWdl/share" target="_blank" rel="noopener" id="cta-btn-float">
   <span class="cta-main-text">[마감 임박] 바로 지원하기 (30초 소요)</span>
   <span class="cta-sub-text">📝 이력서 없이도 지원 가능 · 현재 <span id="applicant-count">30</span>명 지원 중</span>
 </a>
@@ -1542,7 +1542,7 @@ function shareKakao() {
     .join('&');
   if (!qs) return;
 
-  document.querySelectorAll('a[href*="tally.so/r/"]').forEach(function (a) {
+  document.querySelectorAll('a[href*="tally.so/"]').forEach(function (a) {
     var href = a.getAttribute('href');
     a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + qs);
   });
