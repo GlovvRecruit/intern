@@ -1569,5 +1569,17 @@ function shareKakao() {
   <p>주소 : 서울특별시 용산구 보광로60길 3 이화빌딩 2, 3층</p>
 </footer>
 
+<script>
+(function () {
+  var fbclid = new URLSearchParams(location.search).get('fbclid');
+  if (!fbclid) return;
+  document.querySelectorAll('a[href*="tally.so"]').forEach(function (a) {
+    var url = new URL(a.href);
+    url.searchParams.set('fbclid', fbclid);
+    a.href = url.toString();
+  });
+})();
+</script>
+
 </body>
 </html>
