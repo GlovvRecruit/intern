@@ -1,198 +1,43 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>지원 완료 - Glovv</title>
-<meta name="robots" content="noindex"/>
-<!-- Meta Pixel Code -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>지원 완료</title>
+
+<!--
+  지원 완료 페이지가 새 사이트로 이전됐습니다(2026-08-28).
+
+  **여기서는 CompleteRegistration 을 쏘지 않는다.** 새 /thankyou 가 직접 발화하므로
+  여기서도 쏘면 같은 지원 1건이 두 번 전환으로 잡힌다. 이 페이지는 이동만 시킨다.
+
+  쿼리스트링은 그대로 넘긴다 — Tally 가 붙여 보내는 값과 fbclid·utm_* 이 유실되면
+  광고 귀속이 끊긴다.
+-->
+
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '881944777433930');
-fbq('track', 'PageView');
-fbq('track', 'CompleteRegistration');
+  (function () {
+    var target = "https://beauty-recruit.vercel.app/thankyou";
+    var qs = window.location.search || "";
+    var hash = window.location.hash || "";
+    window.location.replace(target + qs + hash);
+  })();
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=881944777433930&ev=CompleteRegistration&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N56MMQQH');</script>
-<!-- End Google Tag Manager -->
-<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/>
+
+<meta http-equiv="refresh" content="0; url=https://beauty-recruit.vercel.app/thankyou">
+<link rel="canonical" href="https://beauty-recruit.vercel.app/thankyou">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
-  background: #f5f5f4;
-  color: #111;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container {
-  text-align: center;
-  padding: 60px 24px;
-  max-width: 480px;
-  width: 100%;
-}
-.logo {
-  width: 120px;
-  margin-bottom: 36px;
-  border-radius: 0;
-}
-.emoji {
-  font-size: 48px;
-  margin-bottom: 20px;
-  display: block;
-}
-h1 {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.3;
-  margin-bottom: 16px;
-}
-.desc {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.9;
-  margin-bottom: 12px;
-}
-.email {
-  font-size: 15px;
-  color: #888;
-  margin-bottom: 40px;
-}
-.email a {
-  color: #111;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.btn {
-  display: inline-block;
-  background: #111;
-  color: #fff;
-  padding: 15px 40px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 16px;
-  transition: background .15s, transform .15s;
-  margin-bottom: 16px;
-}
-.btn:hover {
-  background: #333;
-  transform: translateY(-2px);
-}
-
-/* ── 카카오 저장 버튼 ── */
-.kakao-save-btn {
-  display: inline-block;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  padding: 15px 40px;
-  font-family: 'Pretendard', -apple-system, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background .15s, transform .15s;
-}
-.kakao-save-btn:hover {
-  background: #333;
-  transform: translateY(-2px);
-}
-
-@media(max-width: 480px) {
-  h1 { font-size: 24px; }
-  .btn,
-  .kakao-save-btn {
-    width: 100%;
-    text-align: center;
-    padding: 15px 20px;
-  }
-}
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+         font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+         background: #f9fafb; color: #374151; }
+  a { color: #ff0099; font-weight: 700; }
 </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N56MMQQH"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<div class="container">
-  <img class="logo" src="https://upload.cafenono.com/image/logo/20250427/074222_PYzZMaknLgzVLU2Pgd?q=90&s=1280x1" alt="Glovv 로고"/>
-  <span class="emoji">🎉</span>
-  <h1>지원해주셔서<br/>감사합니다!</h1>
-  <p class="desc">
-    검토 후 빠르게 연락드리겠습니다.
+  <p>
+    지원이 접수됐습니다.
+    <a href="https://beauty-recruit.vercel.app/thankyou">확인 페이지로 이동</a>
   </p>
-  <p class="email">
-    문의 : <a href="mailto:youjin@glovv.co.kr">youjin@glovv.co.kr</a>
-  </p>
-  <button class="kakao-save-btn" style="margin-top:24px" onclick="shareKakao()">🔖 채용공고 저장하고 다시보기</button>
-
-</div>
-
-<!-- 카카오 SDK -->
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"></script>
-<script>
-  if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
-    Kakao.init('0f2f5b34c1ba03e1efb0cad4cb3f2f6a');
-  }
-</script>
-
-<script>
-function shareKakao() {
-  // GTM 트래킹
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'cta_click',
-    cta_position: 'kakao_share_thankyou'
-  });
-
-  // Meta Pixel 트래킹
-  if (typeof fbq !== 'undefined') {
-    fbq('trackCustom', 'Save', { cta_position: 'kakao_share_thankyou' });
-  }
-
-  Kakao.Share.sendDefault({
-    objectType: 'feed',
-    content: {
-      title: '글로브 뷰티 인턴 채용',
-      description: '다시 보고 싶다면 저장해두세요!',
-      imageUrl: 'https://glovvrecruit.github.io/intern/logo_glovv_profile.png',
-      link: {
-        mobileWebUrl: 'https://glovvrecruit.github.io/intern/',
-        webUrl: 'https://glovvrecruit.github.io/intern/',
-      },
-    },
-    buttons: [
-      {
-        title: '공고 확인하기',
-        link: {
-          mobileWebUrl: 'https://glovvrecruit.github.io/intern/',
-          webUrl: 'https://glovvrecruit.github.io/intern/',
-        },
-      },
-    ],
-  });
-}
-</script>
-
 </body>
 </html>
